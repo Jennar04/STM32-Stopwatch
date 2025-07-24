@@ -1,0 +1,697 @@
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.arch armv6s-m
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 0
+  12              		.eabi_attribute 18, 4
+  13              		.file	"main.c"
+  14              		.text
+  15              		.section	.text.initGPIO,"ax",%progbits
+  16              		.align	1
+  17              		.global	initGPIO
+  18              		.syntax unified
+  19              		.code	16
+  20              		.thumb_func
+  22              	initGPIO:
+  23              		@ args = 0, pretend = 0, frame = 0
+  24              		@ frame_needed = 0, uses_anonymous_args = 0
+  25              		@ link register save eliminated.
+  26 0000 0D4A     		ldr	r2, .L2
+  27 0002 5169     		ldr	r1, [r2, #20]
+  28 0004 C023     		movs	r3, #192
+  29 0006 DB02     		lsls	r3, r3, #11
+  30 0008 0B43     		orrs	r3, r1
+  31 000a 5361     		str	r3, [r2, #20]
+  32 000c 9023     		movs	r3, #144
+  33 000e DB05     		lsls	r3, r3, #23
+  34 0010 1A68     		ldr	r2, [r3]
+  35 0012 FF21     		movs	r1, #255
+  36 0014 8A43     		bics	r2, r1
+  37 0016 1A60     		str	r2, [r3]
+  38 0018 DA68     		ldr	r2, [r3, #12]
+  39 001a 8A43     		bics	r2, r1
+  40 001c DA60     		str	r2, [r3, #12]
+  41 001e DA68     		ldr	r2, [r3, #12]
+  42 0020 5520     		movs	r0, #85
+  43 0022 0243     		orrs	r2, r0
+  44 0024 DA60     		str	r2, [r3, #12]
+  45 0026 054B     		ldr	r3, .L2+4
+  46 0028 1A68     		ldr	r2, [r3]
+  47 002a 8A43     		bics	r2, r1
+  48 002c 1A60     		str	r2, [r3]
+  49 002e 1A68     		ldr	r2, [r3]
+  50 0030 0243     		orrs	r2, r0
+  51 0032 1A60     		str	r2, [r3]
+  52              		@ sp needed
+  53 0034 7047     		bx	lr
+  54              	.L3:
+  55 0036 C046     		.align	2
+  56              	.L2:
+  57 0038 00100240 		.word	1073876992
+  58 003c 00040048 		.word	1207960576
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 2
+
+
+  60              		.section	.text.initTIM14,"ax",%progbits
+  61              		.align	1
+  62              		.global	initTIM14
+  63              		.syntax unified
+  64              		.code	16
+  65              		.thumb_func
+  67              	initTIM14:
+  68              		@ args = 0, pretend = 0, frame = 0
+  69              		@ frame_needed = 0, uses_anonymous_args = 0
+  70              		@ link register save eliminated.
+  71 0000 0B4A     		ldr	r2, .L5
+  72 0002 D169     		ldr	r1, [r2, #28]
+  73 0004 8023     		movs	r3, #128
+  74 0006 5B00     		lsls	r3, r3, #1
+  75 0008 0B43     		orrs	r3, r1
+  76 000a D361     		str	r3, [r2, #28]
+  77 000c 094B     		ldr	r3, .L5+4
+  78 000e 0A4A     		ldr	r2, .L5+8
+  79 0010 9A62     		str	r2, [r3, #40]
+  80 0012 0922     		movs	r2, #9
+  81 0014 DA62     		str	r2, [r3, #44]
+  82 0016 DA68     		ldr	r2, [r3, #12]
+  83 0018 0121     		movs	r1, #1
+  84 001a 0A43     		orrs	r2, r1
+  85 001c DA60     		str	r2, [r3, #12]
+  86 001e 1A68     		ldr	r2, [r3]
+  87 0020 8A43     		bics	r2, r1
+  88 0022 1A60     		str	r2, [r3]
+  89 0024 054B     		ldr	r3, .L5+12
+  90 0026 8022     		movs	r2, #128
+  91 0028 1203     		lsls	r2, r2, #12
+  92 002a 1A60     		str	r2, [r3]
+  93              		@ sp needed
+  94 002c 7047     		bx	lr
+  95              	.L6:
+  96 002e C046     		.align	2
+  97              	.L5:
+  98 0030 00100240 		.word	1073876992
+  99 0034 00200040 		.word	1073750016
+ 100 0038 7FBB0000 		.word	47999
+ 101 003c 00E100E0 		.word	-536813312
+ 103              		.section	.text.TIM14_IRQHandler,"ax",%progbits
+ 104              		.align	1
+ 105              		.global	TIM14_IRQHandler
+ 106              		.syntax unified
+ 107              		.code	16
+ 108              		.thumb_func
+ 110              	TIM14_IRQHandler:
+ 111              		@ args = 0, pretend = 0, frame = 0
+ 112              		@ frame_needed = 0, uses_anonymous_args = 0
+ 113              		@ link register save eliminated.
+ 114 0000 104A     		ldr	r2, .L9
+ 115 0002 1369     		ldr	r3, [r2, #16]
+ 116 0004 0121     		movs	r1, #1
+ 117 0006 8B43     		bics	r3, r1
+ 118 0008 1361     		str	r3, [r2, #16]
+ 119 000a 0F4B     		ldr	r3, .L9+4
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 3
+
+
+ 120 000c 1B78     		ldrb	r3, [r3]
+ 121 000e 002B     		cmp	r3, #0
+ 122 0010 17D0     		beq	.L7
+ 123 0012 0E4A     		ldr	r2, .L9+8
+ 124 0014 1378     		ldrb	r3, [r2]
+ 125 0016 0133     		adds	r3, r3, #1
+ 126 0018 DBB2     		uxtb	r3, r3
+ 127 001a 1370     		strb	r3, [r2]
+ 128 001c 632B     		cmp	r3, #99
+ 129 001e 10D9     		bls	.L7
+ 130 0020 1300     		movs	r3, r2
+ 131 0022 0022     		movs	r2, #0
+ 132 0024 1A70     		strb	r2, [r3]
+ 133 0026 0A4A     		ldr	r2, .L9+12
+ 134 0028 1378     		ldrb	r3, [r2]
+ 135 002a 0133     		adds	r3, r3, #1
+ 136 002c DBB2     		uxtb	r3, r3
+ 137 002e 1370     		strb	r3, [r2]
+ 138 0030 3B2B     		cmp	r3, #59
+ 139 0032 06D9     		bls	.L7
+ 140 0034 1300     		movs	r3, r2
+ 141 0036 0022     		movs	r2, #0
+ 142 0038 1A70     		strb	r2, [r3]
+ 143 003a 064A     		ldr	r2, .L9+16
+ 144 003c 1378     		ldrb	r3, [r2]
+ 145 003e 0133     		adds	r3, r3, #1
+ 146 0040 1370     		strb	r3, [r2]
+ 147              	.L7:
+ 148              		@ sp needed
+ 149 0042 7047     		bx	lr
+ 150              	.L10:
+ 151              		.align	2
+ 152              	.L9:
+ 153 0044 00200040 		.word	1073750016
+ 154 0048 00000000 		.word	running
+ 155 004c 00000000 		.word	hundredths
+ 156 0050 00000000 		.word	seconds
+ 157 0054 00000000 		.word	minutes
+ 159              		.section	.text.checkPB,"ax",%progbits
+ 160              		.align	1
+ 161              		.global	checkPB
+ 162              		.syntax unified
+ 163              		.code	16
+ 164              		.thumb_func
+ 166              	checkPB:
+ 167              		@ args = 0, pretend = 0, frame = 0
+ 168              		@ frame_needed = 0, uses_anonymous_args = 0
+ 169              		@ link register save eliminated.
+ 170 0000 9023     		movs	r3, #144
+ 171 0002 DB05     		lsls	r3, r3, #23
+ 172 0004 1B69     		ldr	r3, [r3, #16]
+ 173 0006 DB07     		lsls	r3, r3, #31
+ 174 0008 10D4     		bmi	.L12
+ 175 000a 294B     		ldr	r3, .L17
+ 176 000c 0122     		movs	r2, #1
+ 177 000e 1A70     		strb	r2, [r3]
+ 178 0010 2849     		ldr	r1, .L17+4
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 4
+
+
+ 179 0012 0023     		movs	r3, #0
+ 180 0014 0B70     		strb	r3, [r1]
+ 181 0016 2849     		ldr	r1, .L17+8
+ 182 0018 0B70     		strb	r3, [r1]
+ 183 001a 2849     		ldr	r1, .L17+12
+ 184 001c 0B70     		strb	r3, [r1]
+ 185 001e 284B     		ldr	r3, .L17+16
+ 186 0020 1A70     		strb	r2, [r3]
+ 187 0022 2849     		ldr	r1, .L17+20
+ 188 0024 0B68     		ldr	r3, [r1]
+ 189 0026 1343     		orrs	r3, r2
+ 190 0028 0B60     		str	r3, [r1]
+ 191              	.L11:
+ 192              		@ sp needed
+ 193 002a 7047     		bx	lr
+ 194              	.L12:
+ 195 002c 9023     		movs	r3, #144
+ 196 002e DB05     		lsls	r3, r3, #23
+ 197 0030 1B69     		ldr	r3, [r3, #16]
+ 198 0032 9B07     		lsls	r3, r3, #30
+ 199 0034 18D4     		bmi	.L14
+ 200 0036 1E4A     		ldr	r2, .L17
+ 201 0038 0123     		movs	r3, #1
+ 202 003a 1370     		strb	r3, [r2]
+ 203 003c 1D4A     		ldr	r2, .L17+4
+ 204 003e 1370     		strb	r3, [r2]
+ 205 0040 1D4A     		ldr	r2, .L17+8
+ 206 0042 0021     		movs	r1, #0
+ 207 0044 1170     		strb	r1, [r2]
+ 208 0046 1D4A     		ldr	r2, .L17+12
+ 209 0048 1170     		strb	r1, [r2]
+ 210 004a 1D4A     		ldr	r2, .L17+16
+ 211 004c 1370     		strb	r3, [r2]
+ 212 004e 1E4B     		ldr	r3, .L17+24
+ 213 0050 1E4A     		ldr	r2, .L17+28
+ 214 0052 1278     		ldrb	r2, [r2]
+ 215 0054 1A70     		strb	r2, [r3]
+ 216 0056 1E4B     		ldr	r3, .L17+32
+ 217 0058 1E4A     		ldr	r2, .L17+36
+ 218 005a 1278     		ldrb	r2, [r2]
+ 219 005c 1A70     		strb	r2, [r3]
+ 220 005e 1E4B     		ldr	r3, .L17+40
+ 221 0060 1E4A     		ldr	r2, .L17+44
+ 222 0062 1278     		ldrb	r2, [r2]
+ 223 0064 1A70     		strb	r2, [r3]
+ 224 0066 E0E7     		b	.L11
+ 225              	.L14:
+ 226 0068 9023     		movs	r3, #144
+ 227 006a DB05     		lsls	r3, r3, #23
+ 228 006c 1B69     		ldr	r3, [r3, #16]
+ 229 006e 5B07     		lsls	r3, r3, #29
+ 230 0070 0CD4     		bmi	.L15
+ 231 0072 0F4B     		ldr	r3, .L17
+ 232 0074 0121     		movs	r1, #1
+ 233 0076 1970     		strb	r1, [r3]
+ 234 0078 0E4A     		ldr	r2, .L17+4
+ 235 007a 0023     		movs	r3, #0
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 5
+
+
+ 236 007c 1370     		strb	r3, [r2]
+ 237 007e 0E4A     		ldr	r2, .L17+8
+ 238 0080 1170     		strb	r1, [r2]
+ 239 0082 0E4A     		ldr	r2, .L17+12
+ 240 0084 1370     		strb	r3, [r2]
+ 241 0086 0E4A     		ldr	r2, .L17+16
+ 242 0088 1370     		strb	r3, [r2]
+ 243 008a CEE7     		b	.L11
+ 244              	.L15:
+ 245 008c 9023     		movs	r3, #144
+ 246 008e DB05     		lsls	r3, r3, #23
+ 247 0090 1B69     		ldr	r3, [r3, #16]
+ 248 0092 1B07     		lsls	r3, r3, #28
+ 249 0094 C9D4     		bmi	.L11
+ 250 0096 064A     		ldr	r2, .L17
+ 251 0098 0023     		movs	r3, #0
+ 252 009a 1370     		strb	r3, [r2]
+ 253 009c 054A     		ldr	r2, .L17+4
+ 254 009e 1370     		strb	r3, [r2]
+ 255 00a0 054A     		ldr	r2, .L17+8
+ 256 00a2 1370     		strb	r3, [r2]
+ 257 00a4 054A     		ldr	r2, .L17+12
+ 258 00a6 0121     		movs	r1, #1
+ 259 00a8 1170     		strb	r1, [r2]
+ 260 00aa 054A     		ldr	r2, .L17+16
+ 261 00ac 1370     		strb	r3, [r2]
+ 262 00ae BCE7     		b	.L11
+ 263              	.L18:
+ 264              		.align	2
+ 265              	.L17:
+ 266 00b0 00000000 		.word	startFlag
+ 267 00b4 00000000 		.word	lapFlag
+ 268 00b8 00000000 		.word	stopFlag
+ 269 00bc 00000000 		.word	resetFlag
+ 270 00c0 00000000 		.word	running
+ 271 00c4 00200040 		.word	1073750016
+ 272 00c8 00000000 		.word	minutesLap
+ 273 00cc 00000000 		.word	minutes
+ 274 00d0 00000000 		.word	secondsLap
+ 275 00d4 00000000 		.word	seconds
+ 276 00d8 00000000 		.word	hundredthsLap
+ 277 00dc 00000000 		.word	hundredths
+ 279              		.section	.text.convert2BCDASCII,"ax",%progbits
+ 280              		.align	1
+ 281              		.global	convert2BCDASCII
+ 282              		.syntax unified
+ 283              		.code	16
+ 284              		.thumb_func
+ 286              	convert2BCDASCII:
+ 287              		@ args = 0, pretend = 0, frame = 0
+ 288              		@ frame_needed = 0, uses_anonymous_args = 0
+ 289 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 290 0002 C646     		mov	lr, r8
+ 291 0004 00B5     		push	{lr}
+ 292 0006 0500     		movs	r5, r0
+ 293 0008 0C00     		movs	r4, r1
+ 294 000a 9046     		mov	r8, r2
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 6
+
+
+ 295 000c 1E00     		movs	r6, r3
+ 296 000e 0A21     		movs	r1, #10
+ 297 0010 FFF7FEFF 		bl	__aeabi_uidiv
+ 298 0014 C7B2     		uxtb	r7, r0
+ 299 0016 0A21     		movs	r1, #10
+ 300 0018 2800     		movs	r0, r5
+ 301 001a FFF7FEFF 		bl	__aeabi_uidivmod
+ 302 001e CDB2     		uxtb	r5, r1
+ 303 0020 3F01     		lsls	r7, r7, #4
+ 304 0022 3D43     		orrs	r5, r7
+ 305 0024 EDB2     		uxtb	r5, r5
+ 306 0026 0A21     		movs	r1, #10
+ 307 0028 2000     		movs	r0, r4
+ 308 002a FFF7FEFF 		bl	__aeabi_uidiv
+ 309 002e C7B2     		uxtb	r7, r0
+ 310 0030 0A21     		movs	r1, #10
+ 311 0032 2000     		movs	r0, r4
+ 312 0034 FFF7FEFF 		bl	__aeabi_uidivmod
+ 313 0038 CCB2     		uxtb	r4, r1
+ 314 003a 3F01     		lsls	r7, r7, #4
+ 315 003c 3C43     		orrs	r4, r7
+ 316 003e E4B2     		uxtb	r4, r4
+ 317 0040 0A21     		movs	r1, #10
+ 318 0042 4046     		mov	r0, r8
+ 319 0044 FFF7FEFF 		bl	__aeabi_uidiv
+ 320 0048 C7B2     		uxtb	r7, r0
+ 321 004a 0A21     		movs	r1, #10
+ 322 004c 4046     		mov	r0, r8
+ 323 004e FFF7FEFF 		bl	__aeabi_uidivmod
+ 324 0052 C9B2     		uxtb	r1, r1
+ 325 0054 3F01     		lsls	r7, r7, #4
+ 326 0056 3943     		orrs	r1, r7
+ 327 0058 C9B2     		uxtb	r1, r1
+ 328 005a 2B09     		lsrs	r3, r5, #4
+ 329 005c 3033     		adds	r3, r3, #48
+ 330 005e 3370     		strb	r3, [r6]
+ 331 0060 0F22     		movs	r2, #15
+ 332 0062 1540     		ands	r5, r2
+ 333 0064 3035     		adds	r5, r5, #48
+ 334 0066 7570     		strb	r5, [r6, #1]
+ 335 0068 3A23     		movs	r3, #58
+ 336 006a B370     		strb	r3, [r6, #2]
+ 337 006c 2309     		lsrs	r3, r4, #4
+ 338 006e 3033     		adds	r3, r3, #48
+ 339 0070 F370     		strb	r3, [r6, #3]
+ 340 0072 1440     		ands	r4, r2
+ 341 0074 3034     		adds	r4, r4, #48
+ 342 0076 3471     		strb	r4, [r6, #4]
+ 343 0078 2E23     		movs	r3, #46
+ 344 007a 7371     		strb	r3, [r6, #5]
+ 345 007c 0B09     		lsrs	r3, r1, #4
+ 346 007e 3033     		adds	r3, r3, #48
+ 347 0080 B371     		strb	r3, [r6, #6]
+ 348 0082 0A40     		ands	r2, r1
+ 349 0084 3032     		adds	r2, r2, #48
+ 350 0086 F271     		strb	r2, [r6, #7]
+ 351 0088 0023     		movs	r3, #0
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 7
+
+
+ 352 008a 3372     		strb	r3, [r6, #8]
+ 353              		@ sp needed
+ 354 008c 80BC     		pop	{r7}
+ 355 008e B846     		mov	r8, r7
+ 356 0090 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 358              		.section	.rodata.display.str1.4,"aMS",%progbits,1
+ 359              		.align	2
+ 360              	.LC19:
+ 361 0000 53746F70 		.ascii	"Stop Watch\000"
+ 361      20576174 
+ 361      636800
+ 362 000b 00       		.align	2
+ 363              	.LC21:
+ 364 000c 50726573 		.ascii	"Press sw0...\000"
+ 364      73207377 
+ 364      302E2E2E 
+ 364      00
+ 365 0019 000000   		.align	2
+ 366              	.LC26:
+ 367 001c 54696D65 		.ascii	"Time\000"
+ 367      00
+ 368              		.section	.text.display,"ax",%progbits
+ 369              		.align	1
+ 370              		.global	display
+ 371              		.syntax unified
+ 372              		.code	16
+ 373              		.thumb_func
+ 375              	display:
+ 376              		@ args = 0, pretend = 0, frame = 8
+ 377              		@ frame_needed = 0, uses_anonymous_args = 0
+ 378 0000 10B5     		push	{r4, lr}
+ 379 0002 82B0     		sub	sp, sp, #8
+ 380 0004 4E4B     		ldr	r3, .L29
+ 381 0006 1B78     		ldrb	r3, [r3]
+ 382 0008 002B     		cmp	r3, #0
+ 383 000a 0BD1     		bne	.L21
+ 384 000c 4D4B     		ldr	r3, .L29+4
+ 385 000e 1B78     		ldrb	r3, [r3]
+ 386 0010 002B     		cmp	r3, #0
+ 387 0012 07D1     		bne	.L21
+ 388 0014 4C4B     		ldr	r3, .L29+8
+ 389 0016 1B78     		ldrb	r3, [r3]
+ 390 0018 002B     		cmp	r3, #0
+ 391 001a 03D1     		bne	.L21
+ 392 001c 4B4B     		ldr	r3, .L29+12
+ 393 001e 1B78     		ldrb	r3, [r3]
+ 394 0020 002B     		cmp	r3, #0
+ 395 0022 31D1     		bne	.L25
+ 396              	.L21:
+ 397 0024 464B     		ldr	r3, .L29
+ 398 0026 1B78     		ldrb	r3, [r3]
+ 399 0028 002B     		cmp	r3, #0
+ 400 002a 0BD0     		beq	.L22
+ 401 002c 454B     		ldr	r3, .L29+4
+ 402 002e 1B78     		ldrb	r3, [r3]
+ 403 0030 002B     		cmp	r3, #0
+ 404 0032 07D1     		bne	.L22
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 8
+
+
+ 405 0034 444B     		ldr	r3, .L29+8
+ 406 0036 1B78     		ldrb	r3, [r3]
+ 407 0038 002B     		cmp	r3, #0
+ 408 003a 03D1     		bne	.L22
+ 409 003c 434B     		ldr	r3, .L29+12
+ 410 003e 1B78     		ldrb	r3, [r3]
+ 411 0040 002B     		cmp	r3, #0
+ 412 0042 31D0     		beq	.L26
+ 413              	.L22:
+ 414 0044 3E4B     		ldr	r3, .L29
+ 415 0046 1B78     		ldrb	r3, [r3]
+ 416 0048 002B     		cmp	r3, #0
+ 417 004a 0BD0     		beq	.L23
+ 418 004c 3D4B     		ldr	r3, .L29+4
+ 419 004e 1B78     		ldrb	r3, [r3]
+ 420 0050 002B     		cmp	r3, #0
+ 421 0052 07D0     		beq	.L23
+ 422 0054 3C4B     		ldr	r3, .L29+8
+ 423 0056 1B78     		ldrb	r3, [r3]
+ 424 0058 002B     		cmp	r3, #0
+ 425 005a 03D1     		bne	.L23
+ 426 005c 3B4B     		ldr	r3, .L29+12
+ 427 005e 1B78     		ldrb	r3, [r3]
+ 428 0060 002B     		cmp	r3, #0
+ 429 0062 3AD0     		beq	.L27
+ 430              	.L23:
+ 431 0064 364B     		ldr	r3, .L29
+ 432 0066 1B78     		ldrb	r3, [r3]
+ 433 0068 002B     		cmp	r3, #0
+ 434 006a 0BD0     		beq	.L20
+ 435 006c 354B     		ldr	r3, .L29+4
+ 436 006e 1B78     		ldrb	r3, [r3]
+ 437 0070 002B     		cmp	r3, #0
+ 438 0072 07D1     		bne	.L20
+ 439 0074 344B     		ldr	r3, .L29+8
+ 440 0076 1B78     		ldrb	r3, [r3]
+ 441 0078 002B     		cmp	r3, #0
+ 442 007a 03D0     		beq	.L20
+ 443 007c 334B     		ldr	r3, .L29+12
+ 444 007e 1B78     		ldrb	r3, [r3]
+ 445 0080 002B     		cmp	r3, #0
+ 446 0082 43D0     		beq	.L28
+ 447              	.L20:
+ 448 0084 02B0     		add	sp, sp, #8
+ 449              		@ sp needed
+ 450 0086 10BD     		pop	{r4, pc}
+ 451              	.L25:
+ 452 0088 0120     		movs	r0, #1
+ 453 008a FFF7FEFF 		bl	lcd_command
+ 454 008e 3048     		ldr	r0, .L29+16
+ 455 0090 FFF7FEFF 		bl	lcd_putstring
+ 456 0094 C020     		movs	r0, #192
+ 457 0096 FFF7FEFF 		bl	lcd_command
+ 458 009a 2E48     		ldr	r0, .L29+20
+ 459 009c FFF7FEFF 		bl	lcd_putstring
+ 460 00a0 2D4B     		ldr	r3, .L29+24
+ 461 00a2 0822     		movs	r2, #8
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 9
+
+
+ 462 00a4 5A61     		str	r2, [r3, #20]
+ 463 00a6 BDE7     		b	.L21
+ 464              	.L26:
+ 465 00a8 2C4B     		ldr	r3, .L29+28
+ 466 00aa 1A78     		ldrb	r2, [r3]
+ 467 00ac 2C4B     		ldr	r3, .L29+32
+ 468 00ae 1978     		ldrb	r1, [r3]
+ 469 00b0 2C4B     		ldr	r3, .L29+36
+ 470 00b2 1878     		ldrb	r0, [r3]
+ 471 00b4 6B46     		mov	r3, sp
+ 472 00b6 FFF7FEFF 		bl	convert2BCDASCII
+ 473 00ba 0120     		movs	r0, #1
+ 474 00bc FFF7FEFF 		bl	lcd_command
+ 475 00c0 2948     		ldr	r0, .L29+40
+ 476 00c2 FFF7FEFF 		bl	lcd_putstring
+ 477 00c6 C020     		movs	r0, #192
+ 478 00c8 FFF7FEFF 		bl	lcd_command
+ 479 00cc 6846     		mov	r0, sp
+ 480 00ce FFF7FEFF 		bl	lcd_putstring
+ 481 00d2 214B     		ldr	r3, .L29+24
+ 482 00d4 0122     		movs	r2, #1
+ 483 00d6 5A61     		str	r2, [r3, #20]
+ 484 00d8 B4E7     		b	.L22
+ 485              	.L27:
+ 486 00da 244B     		ldr	r3, .L29+44
+ 487 00dc 1A78     		ldrb	r2, [r3]
+ 488 00de 244B     		ldr	r3, .L29+48
+ 489 00e0 1978     		ldrb	r1, [r3]
+ 490 00e2 244B     		ldr	r3, .L29+52
+ 491 00e4 1878     		ldrb	r0, [r3]
+ 492 00e6 6B46     		mov	r3, sp
+ 493 00e8 FFF7FEFF 		bl	convert2BCDASCII
+ 494 00ec 0120     		movs	r0, #1
+ 495 00ee FFF7FEFF 		bl	lcd_command
+ 496 00f2 1D48     		ldr	r0, .L29+40
+ 497 00f4 FFF7FEFF 		bl	lcd_putstring
+ 498 00f8 C020     		movs	r0, #192
+ 499 00fa FFF7FEFF 		bl	lcd_command
+ 500 00fe 6846     		mov	r0, sp
+ 501 0100 FFF7FEFF 		bl	lcd_putstring
+ 502 0104 144B     		ldr	r3, .L29+24
+ 503 0106 0222     		movs	r2, #2
+ 504 0108 5A61     		str	r2, [r3, #20]
+ 505 010a ABE7     		b	.L23
+ 506              	.L28:
+ 507 010c 134B     		ldr	r3, .L29+28
+ 508 010e 1A78     		ldrb	r2, [r3]
+ 509 0110 134B     		ldr	r3, .L29+32
+ 510 0112 1978     		ldrb	r1, [r3]
+ 511 0114 134B     		ldr	r3, .L29+36
+ 512 0116 1878     		ldrb	r0, [r3]
+ 513 0118 6B46     		mov	r3, sp
+ 514 011a FFF7FEFF 		bl	convert2BCDASCII
+ 515 011e 0120     		movs	r0, #1
+ 516 0120 FFF7FEFF 		bl	lcd_command
+ 517 0124 1048     		ldr	r0, .L29+40
+ 518 0126 FFF7FEFF 		bl	lcd_putstring
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 10
+
+
+ 519 012a C020     		movs	r0, #192
+ 520 012c FFF7FEFF 		bl	lcd_command
+ 521 0130 6846     		mov	r0, sp
+ 522 0132 FFF7FEFF 		bl	lcd_putstring
+ 523 0136 084B     		ldr	r3, .L29+24
+ 524 0138 0422     		movs	r2, #4
+ 525 013a 5A61     		str	r2, [r3, #20]
+ 526 013c A2E7     		b	.L20
+ 527              	.L30:
+ 528 013e C046     		.align	2
+ 529              	.L29:
+ 530 0140 00000000 		.word	startFlag
+ 531 0144 00000000 		.word	lapFlag
+ 532 0148 00000000 		.word	stopFlag
+ 533 014c 00000000 		.word	resetFlag
+ 534 0150 00000000 		.word	.LC19
+ 535 0154 0C000000 		.word	.LC21
+ 536 0158 00040048 		.word	1207960576
+ 537 015c 00000000 		.word	hundredths
+ 538 0160 00000000 		.word	seconds
+ 539 0164 00000000 		.word	minutes
+ 540 0168 1C000000 		.word	.LC26
+ 541 016c 00000000 		.word	hundredthsLap
+ 542 0170 00000000 		.word	secondsLap
+ 543 0174 00000000 		.word	minutesLap
+ 545              		.section	.text.main,"ax",%progbits
+ 546              		.align	1
+ 547              		.global	main
+ 548              		.syntax unified
+ 549              		.code	16
+ 550              		.thumb_func
+ 552              	main:
+ 553              		@ Volatile: function does not return.
+ 554              		@ args = 0, pretend = 0, frame = 0
+ 555              		@ frame_needed = 0, uses_anonymous_args = 0
+ 556 0000 10B5     		push	{r4, lr}
+ 557 0002 074B     		ldr	r3, .L33
+ 558 0004 0022     		movs	r2, #0
+ 559 0006 5A61     		str	r2, [r3, #20]
+ 560 0008 FFF7FEFF 		bl	init_LCD
+ 561 000c FFF7FEFF 		bl	initGPIO
+ 562 0010 FFF7FEFF 		bl	initTIM14
+ 563              	.L32:
+ 564 0014 FFF7FEFF 		bl	checkPB
+ 565 0018 FFF7FEFF 		bl	display
+ 566 001c FAE7     		b	.L32
+ 567              	.L34:
+ 568 001e C046     		.align	2
+ 569              	.L33:
+ 570 0020 00040048 		.word	1207960576
+ 572              		.global	running
+ 573              		.section	.bss.running,"aw",%nobits
+ 576              	running:
+ 577 0000 00       		.space	1
+ 578              		.global	hundredthsLap
+ 579              		.section	.bss.hundredthsLap,"aw",%nobits
+ 582              	hundredthsLap:
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 11
+
+
+ 583 0000 00       		.space	1
+ 584              		.global	secondsLap
+ 585              		.section	.bss.secondsLap,"aw",%nobits
+ 588              	secondsLap:
+ 589 0000 00       		.space	1
+ 590              		.global	minutesLap
+ 591              		.section	.bss.minutesLap,"aw",%nobits
+ 594              	minutesLap:
+ 595 0000 00       		.space	1
+ 596              		.global	hundredths
+ 597              		.section	.bss.hundredths,"aw",%nobits
+ 600              	hundredths:
+ 601 0000 00       		.space	1
+ 602              		.global	seconds
+ 603              		.section	.bss.seconds,"aw",%nobits
+ 606              	seconds:
+ 607 0000 00       		.space	1
+ 608              		.global	minutes
+ 609              		.section	.bss.minutes,"aw",%nobits
+ 612              	minutes:
+ 613 0000 00       		.space	1
+ 614              		.global	resetFlag
+ 615              		.section	.data.resetFlag,"aw"
+ 618              	resetFlag:
+ 619 0000 01       		.byte	1
+ 620              		.global	stopFlag
+ 621              		.section	.bss.stopFlag,"aw",%nobits
+ 624              	stopFlag:
+ 625 0000 00       		.space	1
+ 626              		.global	lapFlag
+ 627              		.section	.bss.lapFlag,"aw",%nobits
+ 630              	lapFlag:
+ 631 0000 00       		.space	1
+ 632              		.global	startFlag
+ 633              		.section	.bss.startFlag,"aw",%nobits
+ 636              	startFlag:
+ 637 0000 00       		.space	1
+ 638              		.global	__aeabi_uidivmod
+ 639              		.global	__aeabi_uidiv
+ 640              		.ident	"GCC: (xPack GNU Arm Embedded GCC arm64) 14.2.1 20241119"
+ARM GAS  /var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s 			page 12
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:16     .text.initGPIO:00000000 $t
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:22     .text.initGPIO:00000000 initGPIO
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:57     .text.initGPIO:00000038 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:61     .text.initTIM14:00000000 $t
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:67     .text.initTIM14:00000000 initTIM14
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:98     .text.initTIM14:00000030 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:104    .text.TIM14_IRQHandler:00000000 $t
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:110    .text.TIM14_IRQHandler:00000000 TIM14_IRQHandler
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:153    .text.TIM14_IRQHandler:00000044 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:576    .bss.running:00000000 running
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:600    .bss.hundredths:00000000 hundredths
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:606    .bss.seconds:00000000 seconds
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:612    .bss.minutes:00000000 minutes
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:160    .text.checkPB:00000000 $t
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:166    .text.checkPB:00000000 checkPB
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:266    .text.checkPB:000000b0 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:636    .bss.startFlag:00000000 startFlag
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:630    .bss.lapFlag:00000000 lapFlag
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:624    .bss.stopFlag:00000000 stopFlag
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:618    .data.resetFlag:00000000 resetFlag
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:594    .bss.minutesLap:00000000 minutesLap
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:588    .bss.secondsLap:00000000 secondsLap
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:582    .bss.hundredthsLap:00000000 hundredthsLap
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:280    .text.convert2BCDASCII:00000000 $t
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:286    .text.convert2BCDASCII:00000000 convert2BCDASCII
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:359    .rodata.display.str1.4:00000000 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:369    .text.display:00000000 $t
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:375    .text.display:00000000 display
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:530    .text.display:00000140 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:546    .text.main:00000000 $t
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:552    .text.main:00000000 main
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:570    .text.main:00000020 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:577    .bss.running:00000000 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:583    .bss.hundredthsLap:00000000 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:589    .bss.secondsLap:00000000 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:595    .bss.minutesLap:00000000 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:601    .bss.hundredths:00000000 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:607    .bss.seconds:00000000 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:613    .bss.minutes:00000000 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:625    .bss.stopFlag:00000000 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:631    .bss.lapFlag:00000000 $d
+/var/folders/l9/h8qldwt53m72lnbrwvzh2yp80000gn/T//ccNhpsJa.s:637    .bss.startFlag:00000000 $d
+
+UNDEFINED SYMBOLS
+__aeabi_uidiv
+__aeabi_uidivmod
+lcd_command
+lcd_putstring
+init_LCD
